@@ -1,37 +1,37 @@
-const mysql = require('mysql')
+const mysql = require("mysql");
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
+  host: "localhost",
+  user: "root",
+  password: "12345678",
   // port: '3306',
-  database: 'akform',
-  useConnectionPooling: true
-})
+  database: "akform",
+  useConnectionPooling: true,
+});
 db.connect((err) => {
   if (err) {
-    console.log('数据库连接失败')
+    console.log("数据库连接失败");
     // throw err
   } else {
-    console.log('数据库连接成功')
+    console.log("数据库连接成功");
   }
-})
+});
 // res存在时，直接return错误
 const query = (sql, param, res, callback) => {
-  console.log(sql)
-  if (typeof callback === 'function') {
+  console.log(sql);
+  if (typeof callback === "function") {
     db.query(sql, param, (err, results) => {
       if (err) {
         if (res) {
           return res.json({
             code: 0,
             data: [],
-            message: err
-          })
+            message: err,
+          });
         }
-        console.log(err)
+        console.log(err);
       }
-      callback(results)
-    })
+      callback(results);
+    });
   } else {
     // 没回调时返回promise
     return new Promise((resolve, reject) => {
@@ -41,15 +41,15 @@ const query = (sql, param, res, callback) => {
             return res.json({
               code: 0,
               data: [],
-              message: err
-            })
+              message: err,
+            });
           }
-          reject(err)
+          reject(err);
         } else {
-          resolve(results)
+          resolve(results);
         }
-      })
-    })
+      });
+    });
   }
-}
-module.exports = query
+};
+module.exports = query;

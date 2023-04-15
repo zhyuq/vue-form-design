@@ -102,8 +102,8 @@ CREATE TABLE `datasource` (
   `status` int(1) NOT NULL,
   `creatDate` datetime DEFAULT NULL,
   `updateDate` datetime DEFAULT NULL,
-  `creatName` varchar(50) NOT NULL,
-  `updateName` varchar(50) NOT NULL COMMENT '最后修改人',
+  `creatName` varchar(50) DEFAULT 'admin',
+  `updateName` varchar(50) DEFAULT 'admin' COMMENT '最后修改人',
   `remark` varchar(50) NOT NULL COMMENT '表注释',
   `tableData` text NOT NULL COMMENT '表结构数据'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='数据源表';
@@ -158,7 +158,7 @@ CREATE TABLE `design` (
   `name` varchar(50) NOT NULL COMMENT '保存的标题名称',
   `type` int(11) NOT NULL COMMENT '表单和列表两种类型 1 表单 2 列表',
   `data` text NOT NULL COMMENT '设计生成的字符串内容',
-  `listData` text NOT NULL,
+  `listData` text,
   `status` int(11) NOT NULL DEFAULT '1' COMMENT '是否启用 1启用（默认） 0禁用',
   `updateDate` datetime NOT NULL COMMENT '更新时间',
   `creatDate` datetime NOT NULL COMMENT '创建时间',

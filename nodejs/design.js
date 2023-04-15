@@ -9,6 +9,27 @@ router.post('/save', (req, res) => {
   sql = 'insert into `design` set ?'
   Object.assign(query, { updateDate: new Date(), creatDate: new Date() })
   param = query
+  if (!query['category']) {
+    query['category'] = 0
+  }
+  if (!query['creatName']) {
+    query['creatName'] = 'admin'
+  }
+  if (!query['editName']) {
+    query['editName'] = 'admin'
+  }
+  if (!query['roleId']) {
+    query['roleId'] = 1
+  }
+  if (!query['icon']) {
+    query['icon'] = ''
+  }
+  if (!query['showMenu']) {
+    query['showMenu'] = 1
+  }
+  if (!query['data']) {
+    query['data'] = ''
+  }
   sqlQuery(sql, param, res, (result) => {
     res.json({
       code: 1,
