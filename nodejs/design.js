@@ -30,6 +30,9 @@ router.post('/save', (req, res) => {
   if (!query['data']) {
     query['data'] = ''
   }
+  if (!query['source']) {
+    query['source'] = 1000
+  }
   sqlQuery(sql, param, res, (result) => {
     res.json({
       code: 1,
